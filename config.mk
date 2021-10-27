@@ -4,4 +4,4 @@ CC	=	go build
 
 CLN	=	trash
 
-FILE	=	todo.go
+FILE	=	src/*.go
