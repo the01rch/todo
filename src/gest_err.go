@@ -33,7 +33,7 @@ func gestOption(str string) bool {
         case str == "-e":
             return true
     }
-    Fprintf(Stderr, "Wrong option, try -h for help.\n")
+    Fprintf(Stderr, "Wrong option, try -h or --help for help.\n")
     return false
 }
 
