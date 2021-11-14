@@ -12,15 +12,7 @@ func isFile(e error) {
     }
 }
 
-func isArgs() bool {
-    if len(Args) < 1 {
-        Fprintf(Stderr, "Too few arguments !\n")
-        return false
-    }
-    return true
-}
-
-func gestOption(str string) bool {
+func isOpt(str string) bool {
     switch {
         case str == "-a":
             return true
@@ -38,10 +30,7 @@ func gestOption(str string) bool {
 }
 
 func gestErr() bool {
-    if !isArgs() {
-        return false
-    }
-    if !isOption() && !gestOption(Args[1]) {
+    if !gestOpt() && !isOpt(Args[1]) {
         return false
     }
     return true
