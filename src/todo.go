@@ -16,35 +16,41 @@ func sliceArgs()[][]string {
 }
 
 func readFile() {
-    _, err := ReadFile("./data/data_3.txt")
+    content, err := ReadFile("./data/data_3.txt")
     isFile(err)
-    Println(sliceArgs())
+    parseFile(string(content))
+    //Println(sliceArgs())
 }
 
-func helpOption() {
-    Printf("USAGE\n\ttodo [OPTIONS] task|ID\n\n")
-    Printf("EXAMPLE\n\ttodo -a 'read a book'")
-    Printf("\n\nOPTIONS\n\t-a, --add\t\t\tadd a new task\n\t")
-    Printf("-b, --begin\t\t\tbegin a task\n\t-c, --check\t\t")
-    Printf("\tcheck a task\n\t-d, --delete\t\tdelete a task\n\t-e, --edit\t")
-    Printf("\t\tedit a task\n\t-h, --help\t\t\tprint this help\n\n")
+func printTask(str []byte) {
+    task := string(str)
+    Printf("%s", task)
+    Println("\nTHAT A TASSK !")
 }
 
-func isOption()bool {
-    if len(Args) == 1 {
-        readFile()
-        Exit(0)
+func parseFile(str string) {
+    task := make([]byte, 100)
+    y := 0
+    x := 0
+
+    for i := 0; i < len(str); i++ {
+        if str[i] == '\n' {
+            y++
+        }
+        if y == 2 {
+            y = 0
+            printTask(task)
+            x = 0
+        }
+        task[x] = str[i]
+        x++
     }
-    if Args[1] == "--help" || Args[1] == "-h" {
-        helpOption()
-        Exit(0)
-    }
-    return false
+    return
 }
 
 func main() {
     if !gestErr() {
         Exit(1)
     }
-    readFile()
+    Printf("Best CLI todo app ever!\n")
 }
