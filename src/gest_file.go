@@ -37,6 +37,8 @@ func printTask(str []byte) {
             Printf(" ")
         } else if check == 1 {
             Printf(" ")
+        } else if check == 2 {
+            Printf(" ")
         }
     }
     Printf("  \"")
