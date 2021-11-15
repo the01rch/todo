@@ -8,7 +8,7 @@ run:
 	@go run $(FILE)
 
 clean:
-	@trash $(BIN)
+	@rm $(BIN)
 	@echo "Clean binary !"
 
 re: clean build
