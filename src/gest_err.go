@@ -7,8 +7,9 @@ import (
 
 func isFile(e error) {
     if e != nil {
-        Fprintf(Stderr, "File doesn't exist !\n")
-        Exit(1)
+        panic(e)
+        //Fprintf(Stderr, "File doesn't exist !\n")
+        //Exit(1)
     }
 }
 
@@ -24,8 +25,10 @@ func isOpt(str string) bool {
             return true
         case str == "-e":
             return true
+        case str == "--help":
+            return true
     }
-    Fprintf(Stderr, "Wrong option, try -h or --help for help.\n")
+    Fprintf(Stderr, "Wrong option format, try --help for help.\n")
     return false
 }
 

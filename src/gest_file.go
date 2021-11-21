@@ -6,11 +6,11 @@ import (
 	. "strconv"
 )
 
-func readFile() {
+func getFile() string {
     content, err := ReadFile("./data/data_3.txt")
     isFile(err)
-    parseFile(string(content))
-    //Println(sliceArgs())
+    str := string(content)
+    return str
 }
 
 func isNum(c byte)bool {
@@ -26,7 +26,6 @@ func printTask(str []byte) {
     check := 0
     c := 0
 
-    //Printf("\nThis is str[0] = %c\nThis is task = %s", str[0], task)
     if str[1] == '-' && isNum(str[2]) {
         id, _ = Atoi(string(task[2]))
         Printf("%d - ", id)
@@ -66,8 +65,8 @@ func parseFile(str string) {
         if y == 2 {
             y = 0
             printTask(task)
-            //task = task[:0]
-            //task = make([]byte, 100)
+            task = task[:0]
+            task = make([]byte, 100)
             x = 0
             if i+1 < len(str) {
                 i++
