@@ -1,6 +1,0 @@
-0-0
-read a book
-1-1
-Open ToDo
-2-2
-Develop todo in golang
