@@ -25,8 +25,6 @@ func isOpt(str string) bool {
             return true
         case str == "-e":
             return true
-        case str == "--help":
-            return true
     }
     Fprintf(Stderr, "Wrong option format, try --help for help.\n")
     return false
