@@ -1,15 +1,20 @@
-include config.mk
+BIN	=	ToDo
 
-build:
-	@$(CC) -o $(BIN) $(FILE)
+SRC	=	src/*.go
+
+all:
+	@go build -o $(BIN) $(SRC)
 	@echo "Build binary !"
-	@chmod 755 $(BIN)
+	@mv $(BIN) bin
 
 run:
-	@go run $(FILE)
+	@bin/./$(BIN) $(filter-out $@,$(MAKECMDGOALS))
+%:
+	@true
 
 clean:
-	@rm $(BIN)
+	@go clean
+	@rm bin/$(BIN)
 	@echo "Clean binary !"
 
-re: clean build
+re: clean all
