@@ -1,0 +1,17 @@
+{
+    {
+        "name": "read the documentation",
+        "id": 0,
+        "status": 0
+    },
+    {
+        "name": "write README",
+        "id": 1,
+        "status": 1
+    },
+    {
+        "name": "write Makefile",
+        "id": 2,
+        "status": 2
+    }
+}
