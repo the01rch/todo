@@ -5,28 +5,6 @@ import (
     . "fmt"
 )
 
-func is_file(e error) {
-    if e != nil {
-        panic(e)
-    }
-}
-
-func is_flag() bool {
-    switch Args[1] {
-        case "-a":
-            return true
-        case "-b":
-            return true
-        case "-c":
-            return true
-        case "-d":
-            return true
-        case "-e":
-            return true
-    }
-    return false
-}
-
 func help() string {
     return `
         $> ToDo [Flags] [Args]
@@ -48,9 +26,26 @@ func help() string {
     `
 }
 
+func is_flag() bool {
+    switch Args[1] {
+        case "-a":
+            return true
+        case "-b":
+            return true
+        case "-c":
+            return true
+        case "-d":
+            return true
+        case "-e":
+            return true
+    }
+    return false
+}
+
 func main() {
     if len(Args) > 1 && !is_flag() {
         Println(help())
         Exit(1)
     }
+    Println(get_file())
 }
