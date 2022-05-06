@@ -47,5 +47,5 @@ func main() {
         Println(help())
         Exit(1)
     }
-    Println(get_file())
+    json_to_struct()
 }
