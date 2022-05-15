@@ -47,5 +47,8 @@ func main() {
         Println(help())
         Exit(1)
     }
-    json_to_struct()
+    arr := json_to_array()
+    if len(Args) > 2 && Args[1] == "-b" {
+        begin_flag(arr, Args[2])
+    }
 }

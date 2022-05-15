@@ -6,23 +6,24 @@ import (
     . "encoding/json"
 )
 
-type List struct {
-    Name string
-    Id int
+type Node struct {
+    Id string
     Status int
+    Name string
+    next *Node
 }
 
-/*
 type List struct {
     head *Node
     len int
 }
 
-func (l *List) Insert(name string, status int, id int) {
+/*
+func (l *List) insert(name string, status int, id string) {
     n := Node{}
-    n.name = name
-    n.status = status
-    n.id = id
+    n.Name = name
+    n.Status = status
+    n.Id = id
     if l.len == 0 {
         l.head = &n
         l.len++
@@ -37,7 +38,6 @@ func (l *List) Insert(name string, status int, id int) {
         }
         ptr = ptr.next
     }
-
 }
 
 func (l *List) Print() {
@@ -47,8 +47,8 @@ func (l *List) Print() {
     }
     ptr := l.head
     for i := 0; i < l.len; i++ {
-        Printf("%d - ", ptr.id)
-        switch ptr.status {
+        Printf("%s - ", ptr.Id)
+        switch ptr.Status {
         case 0:
             Printf("  ")
         case 1:
@@ -56,17 +56,15 @@ func (l *List) Print() {
         case 2:
             Printf("  ")
         }
-        Println(ptr.name)
+        Println(ptr.Name)
         ptr = ptr.next
     }
 }
-*/
 
-func print_list(arr []List) {
-    s := arr[0]
+func print_array(arr []Node) {
     for i := 0; i < len(arr); i++ {
-        s = arr[i]
-        Printf("%d - ", s.Id)
+        s := arr[i]
+        Printf("%s - ", s.Id)
         switch s.Status {
         case 0:
             Printf("  ")
@@ -79,8 +77,18 @@ func print_list(arr []List) {
     }
 }
 
-func json_to_struct() {
-    var arr []List
+func array_to_list(arr []Node) {
+    list := List{}
+    for i := 0; i < len(arr); i++ {
+        s := arr[i]
+        list.insert(s.Name, s.Status, s.Id)
+    }
+}
+
+*/
+
+func json_to_array() []Node {
+    var arr []Node
 
     data, err := ReadFile("./data/list.json")
     if err != nil {
@@ -90,5 +98,5 @@ func json_to_struct() {
     if err2 != nil {
         Println(err2)
     } 
-    print_list(arr)
+    return arr
 }

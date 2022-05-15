@@ -1,5 +1,5 @@
 [
-    {"Name": "read the documentation","Id": 0,"Status": 0},
-    {"Name": "write README","Id": 1,"Status": 1},
-    {"Name": "write Makefile","Id": 2,"Status": 2}
+    {"Name": "read the documentation","Id": "0","Status": 0},
+    {"Name": "write README","Id": "1","Status": 1},
+    {"Name": "write Makefile","Id": "2","Status": 2}
 ]
