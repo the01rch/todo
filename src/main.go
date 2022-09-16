@@ -52,25 +52,15 @@ func is_flag() bool {
 }
 
 func main() {
-    if len(Args) > 1 && !is_flag() {
+    if len(Args) == 1 {
+        arr := json_to_array() 
+        print_tasks(arr)
+        return
+    } else if !is_flag() {
         Println(help())
         Exit(1)
     }
-    arr := json_to_array() 
-    if len(Args) == 1 {
-        print_tasks(arr)
-        return
-    }
-    if len(Args) > 2 && Args[1] == "-b" {
-        update_status(arr, Args[2], BEGIN)
-    }
-    if len(Args) > 2 && Args[1] == "-c" {
-        update_status(arr, Args[2], CHECK)
-    }
-    if len(Args) > 2 && Args[1] == "-d" {
-        update_status(arr, Args[2], BEGIN)
-    }
-    if len(Args) > 2 && Args[1] == "-e" {
-        update_status(arr, Args[2], BEGIN)
-    }
+    l := List{}
+    arr := json_to_array()
+    array2list(arr, l)
 }
