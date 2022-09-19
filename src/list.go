@@ -79,6 +79,5 @@ func array2list(arr []data, l List) {
     for i := 0; i < len(arr); i++ {
         l.add(arr[i].Id, arr[i].Status, arr[i].Name)
     }
-    l.print_list()
+//    l.print_list()
 }
-
