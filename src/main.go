@@ -1,8 +1,8 @@
 package main
 
 import (
-    . "os"
-    . "fmt"
+	. "fmt"
+	. "os"
 )
 
 const (
@@ -63,4 +63,15 @@ func main() {
     l := List{}
     arr := json_to_array()
     array2list(arr, l)
+    tab := flag(arr, l)
+    if tab == nil {
+        Println("tab is nul")
+    }
+    //test, err := Marshal(tab)     
+    //if err == nil {
+    //    Println("shit")
+    //}
+    Println(tab)
+    //f := os.WriteFile("./data/list.json", test, 0644)
+    //Println(f)
 }
