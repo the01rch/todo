@@ -1,7 +1,9 @@
 package main
 
 import (
+	. "encoding/json"
 	. "fmt"
+	"io/ioutil"
 	. "os"
 )
 
@@ -67,11 +69,13 @@ func main() {
     if tab == nil {
         Println("tab is nul")
     }
-    //test, err := Marshal(tab)     
-    //if err == nil {
-    //    Println("shit")
-    //}
-    Println(tab)
-    //f := os.WriteFile("./data/list.json", test, 0644)
-    //Println(f)
+    test, err := Marshal(tab)
+    if err != nil {
+        Println("shit")
+        return
+    }
+   err2 := ioutil.WriteFile("./data/list.json", []byte(test), 0777)
+   if err2 != nil {
+       Println("fdp")
+   }
 }
