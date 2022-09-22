@@ -64,18 +64,8 @@ func main() {
     }
     l := List{}
     arr := json_to_array()
-    array2list(arr, l)
-    tab := flag(arr, l)
-    if tab == nil {
-        Println("tab is nul")
-    }
-    test, err := Marshal(tab)
-    if err != nil {
-        Println("shit")
-        return
-    }
-   err2 := ioutil.WriteFile("./data/list.json", []byte(test), 0777)
-   if err2 != nil {
-       Println("fdp")
-   }
+    array2list(arr, &l)
+    tab := flag(arr, &l)
+    test, _ := Marshal(tab)
+    ioutil.WriteFile("./data/list.json", []byte(test), 0777)
 }
