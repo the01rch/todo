@@ -1,9 +1,10 @@
 package main
 
 import (
+	. "encoding/json"
+	. "fmt"
 	. "os"
-    . "fmt"
-    . "encoding/json"
+	"strconv"
 )
 
 type data struct {
@@ -73,11 +74,30 @@ func (l List) print_list() {
         Printf("id: %s, name : %s, status : %d\n", tmp.Id, tmp.Name, tmp.Status)
         i++
     }
+    Printf("last node :\n") 
+    Printf("id: %s, name : %s, status : %d\n", tmp.Id, tmp.Name, tmp.Status)
 }
 
-func array2list(arr []data, l List) {
-    for i := 0; i < len(arr); i++ {
+func array2list(arr []data, l *List) {
+    i := 0
+    for ; i < len(arr); i++ {
         l.add(arr[i].Id, arr[i].Status, arr[i].Name)
     }
-//    l.print_list()
+    l.len = i+1
 }
+
+func list2array(l *List) []data {
+    tmp := l.head
+    arr := make([]data, l.len)
+    i := 0
+    for ;tmp.next != nil; tmp = tmp.next {
+        arr[i].Id = strconv.Itoa(i)
+        arr[i].Name = tmp.Name
+        arr[i].Status = tmp.Status
+        i++
+    }
+    arr[i].Id = strconv.Itoa(i) 
+    arr[i].Name = tmp.Name
+    arr[i].Status = tmp.Status
+    return arr
+} 
