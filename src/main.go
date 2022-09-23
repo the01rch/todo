@@ -3,10 +3,8 @@ package main
 import (
 	. "encoding/json"
 	. "fmt"
-	"io/ioutil"
 	. "os"
-)
-
+	"io/ioutil")
 const (
     BEGIN = 1
     CHECK = 2

@@ -12,7 +12,6 @@ func flag(arr []data, l *List) []data {
             arr = list2array(l)
         case "-d":
             del_flag(l)
-            l.print_list()
             arr = list2array(l)
         default:
             arr = status_flag(arr)
