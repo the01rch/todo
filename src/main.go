@@ -64,6 +64,6 @@ func main() {
     arr := json_to_array()
     array2list(arr, &l)
     tab := flag(arr, &l)
-    test, _ := Marshal(tab)
+    test, _ := MarshalIndent(tab, "", " ")
     ioutil.WriteFile("./data/list.json", []byte(test), 0777)
 }
