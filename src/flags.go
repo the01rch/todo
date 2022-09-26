@@ -11,7 +11,11 @@ func flag(arr []data, l *List) []data {
             add_flag(l)
             arr = list2array(l)
         case "-d":
-            del_flag(l)
+            if len(Args) > 4 {
+                for i := 2; i < len(Args); i++ {
+                    del_flag(l, i)
+                }
+            }
             arr = list2array(l)
         default:
             arr = status_flag(arr)
@@ -33,17 +37,17 @@ func add_flag(l *List) {
     tmp.next = node
 }
 
-func del_flag(l *List) {
+func del_flag(l *List, index int) {
     i := 0
     for tmp := l.head; tmp.next != nil; tmp = tmp.next {
-        if i == 0 && Args[2] == "0" {
+        if i == 0 && Args[index] == "0" {
             tmp = tmp.next
             l.head = tmp
             break
-        } else if tmp.next.Id == Args[2] && tmp.next.next == nil {
+        } else if tmp.next.Id == Args[index] && tmp.next.next == nil {
             tmp.next = nil 
             break
-        } else if tmp.next.Id == Args[2] {
+        } else if tmp.next.Id == Args[index] {
             tmp.next = tmp.next.next
         } 
         i++
