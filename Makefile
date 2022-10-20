@@ -1,4 +1,4 @@
-BIN	=	ToDo
+BIN	=	todo
 
 SRC	=	src/*.go
 

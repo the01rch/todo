@@ -11,17 +11,12 @@
  },
  {
   "Id": "2",
-  "Status": 0,
+  "Status": 1,
   "Name": "task family"
  },
  {
   "Id": "3",
-  "Status": 0,
-  "Name": "priority"
- },
- {
-  "Id": "4",
-  "Status": 0,
+  "Status": 1,
   "Name": "total done"
  }
 ]
