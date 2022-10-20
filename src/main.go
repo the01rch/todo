@@ -5,6 +5,7 @@ import (
 	. "fmt"
 	. "os"
 	"io/ioutil")
+
 const (
     BEGIN = 1
     CHECK = 2

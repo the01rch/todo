@@ -11,11 +11,7 @@ func flag(arr []data, l *List) []data {
             add_flag(l)
             arr = list2array(l)
         case "-d":
-            if len(Args) > 4 {
-                for i := 2; i < len(Args); i++ {
-                    del_flag(l, i)
-                }
-            }
+            del_flag(l)
             arr = list2array(l)
         default:
             arr = status_flag(arr)
@@ -37,17 +33,17 @@ func add_flag(l *List) {
     tmp.next = node
 }
 
-func del_flag(l *List, index int) {
+func del_flag(l *List) {
     i := 0
     for tmp := l.head; tmp.next != nil; tmp = tmp.next {
-        if i == 0 && Args[index] == "0" {
+        if i == 0 && Args[2] == "0" {
             tmp = tmp.next
             l.head = tmp
             break
-        } else if tmp.next.Id == Args[index] && tmp.next.next == nil {
+        } else if tmp.next.Id == Args[2] && tmp.next.next == nil {
             tmp.next = nil 
             break
-        } else if tmp.next.Id == Args[index] {
+        } else if tmp.next.Id == Args[2] {
             tmp.next = tmp.next.next
         } 
         i++
@@ -56,15 +52,18 @@ func del_flag(l *List, index int) {
 }
 
 func status_flag(arr []data) []data {
+    taille := len(Args)
     for i := 0; i < len(arr); i++ {
-        if Args[2] == arr[i].Id {
-            switch Args[1] {
+        for i := 2; i < taille; i++ {
+            if Args[i] == arr[i].Id {
+                switch Args[1] {
                 case "-b":
                     arr[i].Status = BEGIN
                 case "-c":
                     arr[i].Status = CHECK
                 case "-e":
                     arr[i].Name = Args[3]
+                }
             }
         }
     }
