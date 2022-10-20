@@ -35,27 +35,34 @@ func add_flag(l *List) {
 
 func del_flag(l *List) {
     i := 0
-    for tmp := l.head; tmp.next != nil; tmp = tmp.next {
-        if i == 0 && Args[2] == "0" {
-            tmp = tmp.next
-            l.head = tmp
-            break
-        } else if tmp.next.Id == Args[2] && tmp.next.next == nil {
-            tmp.next = nil 
-            break
-        } else if tmp.next.Id == Args[2] {
-            tmp.next = tmp.next.next
-        } 
-        i++
+    taille := len(Args)
+    check := 0
+    for y := 2; y < taille; y++ { 
+        for tmp := l.head; tmp.next != nil; tmp = tmp.next {
+            if i == 0 && Args[y] == "0" {
+                tmp = tmp.next
+                l.head = tmp
+                check++
+                break
+            } else if tmp.next.Id == Args[y] && tmp.next.next == nil {
+                check++
+                tmp.next = nil 
+                break
+            } else if tmp.next.Id == Args[y] {
+                check++
+                tmp.next = tmp.next.next
+            } 
+            i++
+        }
     }
-    l.len = l.len - 2
+    l.len = l.len - (check + 1)
 }
 
 func status_flag(arr []data) []data {
     taille := len(Args)
     for i := 0; i < len(arr); i++ {
-        for i := 2; i < taille; i++ {
-            if Args[i] == arr[i].Id {
+        for y := 2; y < taille; y++ {
+            if Args[y] == arr[i].Id {
                 switch Args[1] {
                 case "-b":
                     arr[i].Status = BEGIN
