@@ -14,9 +14,9 @@ type data struct {
 }
 
 type Node struct {
-    Id string
-    Status int
-    Name string
+    Id string `json:"Id"`
+    Status int `json:"Status"`
+    Name string `json:"Name"`
     next *Node
 } 
 
@@ -40,14 +40,22 @@ func json_to_array() []data {
 }
 
 func print_tasks(arr []data) {
+    check := 0
     for i := 0; i < len(arr); i++ {
-        Printf("%s", arr[i].Id)
+        if arr[i].Status == 2 {
+            check++
+        }
+    }
+    Printf("\x1b[4m@Todo\033[0m ")
+    Printf("[%d/%d]\n", check, len(arr))
+    for i := 0; i < len(arr); i++ {
+        Printf("  %s", arr[i].Id)
         if arr[i].Status == 0 {
-            Printf(" -   ")
+            Printf(".   ")
         } else if arr[i].Status == 1 {
-            Printf(" -   ");
+            Printf(".   ");
         } else if arr[i].Status == 2 {
-            Printf(" -   ");
+            Printf(".   ");
         }
         Printf("%s\n", arr[i].Name)
     }
@@ -65,17 +73,6 @@ func (l *List) add(id string, status int, name string) {
         for ;tmp.next != nil; tmp = tmp.next {}
         tmp.next = node
     }
-}
-
-func (l List) print_list() {
-    tmp := l.head
-    for i := 0; tmp.next != nil; tmp = tmp.next {
-        Printf("node = %d\n", i)
-        Printf("id: %s, name : %s, status : %d\n", tmp.Id, tmp.Name, tmp.Status)
-        i++
-    }
-    Printf("last node :\n") 
-    Printf("id: %s, name : %s, status : %d\n", tmp.Id, tmp.Name, tmp.Status)
 }
 
 func array2list(arr []data, l *List) {
