@@ -27,7 +27,7 @@ func add_flag(l *List) {
         i++
     }  
     node := new(Node)
-    node.Id = Itoa(i)
+    node.Name = Itoa(i)
     node.Status = 0
     node.Name = Args[2]
     tmp.next = node
