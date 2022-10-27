@@ -3,7 +3,7 @@ BIN	=	todo
 SRC	=	src/*.go
 
 all:
-	@go build -o $(BIN) $(SRC)
+	gccgo -o $(BIN) $(SRC)
 	@echo "Build binary !"
 
 run:
