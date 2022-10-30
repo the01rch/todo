@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+//	"fmt"
 	"os"
 	// "io/ioutil")
 )
@@ -40,7 +40,8 @@ func is_flag() bool {
 func main() {
 	if len(os.Args) == 1 {
 		arr := json_to_array()
-		fmt.Println(arr)
+        get_proj(arr)
+		//fmt.Println(arr)
 		//print_tasks(arr)
 		return
 	}

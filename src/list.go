@@ -1,10 +1,10 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"os"
 	"strconv"
+	"fmt"
+//	"encoding/json"
 )
 
 type data struct {
@@ -25,19 +25,18 @@ type List struct {
 	len  int
 }
 
-func json_to_array() []data {
-	var arr []data
+func json_to_array() []byte {
+	//var arr []byte
 
 	data, err := os.ReadFile("./data/list.json")
 	if err != nil {
 		fmt.Println(err)
 	}
-	err2 := json.Unmarshal(data, &arr)
-	if err2 != nil {
-		fmt.Println("Error Unmarshal !")
-		fmt.Println(err2)
-	}
-	return arr
+	//err2 := json.Unmarshal(data, &arr)
+//	if err2 != nil {
+//		fmt.Println(err2)
+//	}
+    return data
 }
 
 func print_tasks(arr []data) {
