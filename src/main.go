@@ -40,7 +40,7 @@ func is_flag() bool {
 func main() {
 	if len(os.Args) == 1 {
 		arr := json_to_array()
-        get_proj(arr)
+        str_to_arr(arr)
 		//fmt.Println(arr)
 		//print_tasks(arr)
 		return
