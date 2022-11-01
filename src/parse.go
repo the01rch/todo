@@ -1,9 +1,8 @@
 package main
 
 import (
-    "fmt"    
+    "fmt"
 )
-
 
 func count_rows(str []byte) int {
 	rows := 0
@@ -18,20 +17,18 @@ func count_rows(str []byte) int {
 
 func count_cols(str []byte, rows int) []int {
     cols := make([]int, rows)
-    
-    fmt.Println(rows)
     x := 0
+
     for y := 0; y < rows; y++ {
         for ; str[x] != '\n'; x++ {
             cols[y]++;
         }
-        //fmt.Printf("cols[%d] : %d\n", y, cols[y])
         x++
     }
     return cols
 }
 
-func str_to_arr(str []byte) {
+func str_to_arr(str []byte) [][]byte {
     rows := count_rows(str)
     cols := count_cols(str, rows)
     arr := make([][]byte, rows)
@@ -45,59 +42,24 @@ func str_to_arr(str []byte) {
         }
         x++
     }
-    for i := 0; i < rows; i++ { 
-        fmt.Printf("arr[%d] : %s\n", i, string(arr[i]))
-    }
+    return arr
 }
 
-/*
-func get_pos(str []byte) []int {
-    pos := make([]int, 2)
-    check := 0
-
+func is_proj_name(str []byte) bool {
     for i := 0; i < len(str); i++ {
-        if str[i] == '"' && check == 0 {
-            check = 1
-            pos[0] = i
-        } else if str[i] == ']' && check == 1 {
-            check = 2
-            pos[1] = i
-            break
+        if str[i] == '[' {
+            return true
         }
-    } 
-    return pos
+    }
+    return false
 }
 
-func get_proj(str []byte) {
-    rows := count_rows(str)
-    //cols := count_cols(str)
-    arr := make([][]byte, rows)
+func gest_proj(str []byte) {
+    arr := str_to_arr(str)
 
-    x := 0
-    for y := 0 ; y < rows; y++ {
-        for ; str[x] != '\n'; x++ {
-            arr[y][x] = str[x]
-            fmt.Printf("arr[%d][%d] = %c\n", y, x, arr[y][x])
+    for y := 0; y < len(arr); y++ {
+        if is_proj_name(arr[y]) {
+            fmt.Printf("%s\n", string(arr[y]))
         }
-        x++
     }
-    
 }
-
-func get_size(str []byte) int {
-    size := 0
-
-    for i := 0; i < len(str); i++ {
-        if str[i] == '"'
-    }
-    return size
-}
-
-func red(str []byte) []byte {
-    i := 0
-    arr := make([]byte, i)
-
-
-    return arr 
-}
-*/
