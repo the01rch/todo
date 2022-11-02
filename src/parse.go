@@ -56,10 +56,27 @@ func is_proj_name(str []byte) bool {
 
 func gest_proj(str []byte) {
     arr := str_to_arr(str)
+    check := 0
 
+    fmt.Printf("\033[4mMy projects\033[0m\n")
     for y := 0; y < len(arr); y++ {
         if is_proj_name(arr[y]) {
-            fmt.Printf("%s\n", string(arr[y]))
+            str := string(arr[y])
+            for x := 0; x < len(arr[y]); x++ {
+                if arr[y][x] == '"' {
+                    check++
+                    fmt.Printf(" ");
+                    continue
+                }
+                if check == 1 {
+                    fmt.Printf("%c", str[x])
+                }
+                if check == 2 {
+                    fmt.Printf("\n")
+                    break
+                }
+            }   
         }
+        check = 0
     }
 }
