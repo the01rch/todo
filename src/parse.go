@@ -45,38 +45,64 @@ func str_to_arr(str []byte) [][]byte {
     return arr
 }
 
-func is_proj_name(str []byte) bool {
-    for i := 0; i < len(str); i++ {
-        if str[i] == '[' {
-            return true
+func infos_proj(arr [][]byte) []int {
+    nb := 0
+    for y := 0; y < len(arr); y++ {
+        for x := 0; x < len(arr[y]); x++ {
+            if arr[y][x] == '[' {
+                nb++
+            }
         }
+    }
+    infos := make([]int, nb+1)
+    infos[0] = nb
+    i := 1
+    for y := 0; y < len(arr); y++ {
+        for x := 0; x < len(arr[y]); x++ {
+            if arr[y][x] == '[' {
+                infos[i] = y
+                i++
+            }
+        }
+    }
+    return infos
+}
+
+func proj_names(arr [][]byte) [][]byte {
+    infos := infos_proj(arr)
+    proj_names := make([][]byte, infos[0])
+    index := 0
+
+    for i := 1; i < infos[0]+1; i++ {
+        for y := 0; y < len(arr); y++ {
+            if infos[i] == y {
+                proj_names[index] = make([]byte, len(arr[y])) 
+                proj_names[index] = arr[y]
+                index++
+            }
+        }
+    }
+    return proj_names
+}
+
+func is_alpha(c byte) bool {
+    if c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' {
+        return true
     }
     return false
 }
 
 func gest_proj(str []byte) {
     arr := str_to_arr(str)
-    check := 0
 
-    fmt.Printf("\033[4mMy projects\033[0m\n")
-    for y := 0; y < len(arr); y++ {
-        if is_proj_name(arr[y]) {
-            str := string(arr[y])
-            for x := 0; x < len(arr[y]); x++ {
-                if arr[y][x] == '"' {
-                    check++
-                    fmt.Printf(" ");
-                    continue
-                }
-                if check == 1 {
-                    fmt.Printf("%c", str[x])
-                }
-                if check == 2 {
-                    fmt.Printf("\n")
-                    break
-                }
-            }   
+    fmt.Printf("\033[4mMy projects :\033[0m\n")
+    projn := proj_names(arr)
+    for y := 0; y < len(projn); y++ {
+        for x := 0; x < len(projn[y]); x++ {
+            if is_alpha(projn[y][x]) {
+                fmt.Printf("%c", projn[y][x])
+            }
         }
-        check = 0
+        fmt.Printf("\n");
     }
 }

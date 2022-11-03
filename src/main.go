@@ -1,7 +1,7 @@
 package main
 
 import (
-//	"fmt"
+	"fmt"
 	"os"
 	// "io/ioutil")
 )
@@ -37,6 +37,15 @@ func is_flag() bool {
 	return false
 }
 
+func is_proj_syntax() bool {
+    str := os.Args[1]
+    if str[0] != '@' {
+        fmt.Printf("Wrong syntax ! try --help\n") 
+        return false
+    }
+    return true
+}
+
 func main() {
 	if len(os.Args) == 1 {
 		arr := json_to_array()
@@ -44,7 +53,13 @@ func main() {
 		//fmt.Println(arr)
 		//print_tasks(arr)
 		return
-	}
+	} else if len(os.Args) == 2 {
+        //arr := json_to_array()
+        if !is_proj_syntax() {
+            os.Exit(1)
+        } 
+        return
+    }
 	/*
 	   else if !is_flag() {
 	       Println(help())
