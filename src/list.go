@@ -4,7 +4,7 @@ import (
 	"os"
 	"strconv"
 	"fmt"
-//	"encoding/json"
+	"encoding/json"
 )
 
 type data struct {
@@ -25,20 +25,25 @@ type List struct {
 	len  int
 }
 
-func json_to_array() []byte {
-	//var arr []byte
-
+func get_file() []byte {
 	data, err := os.ReadFile("./data/list.json")
 	if err != nil {
 		fmt.Println(err)
 	}
-	//err2 := json.Unmarshal(data, &arr)
-//	if err2 != nil {
-//		fmt.Println(err2)
-//	}
     return data
 }
 
+func json_to_array(data []byte) []byte {
+	var arr []byte
+
+	err2 := json.Unmarshal(data, &arr)
+	if err2 != nil {
+		fmt.Println(err2)
+	}
+    return data
+}
+
+/*
 func get_nb_tasks(arr []data) int {
     nb := 0
 
@@ -49,12 +54,13 @@ func get_nb_tasks(arr []data) int {
 	}
     return nb 
 }
+*/
 
 func print_tasks(arr []data) {
-	check := get_nb_tasks(arr)
+	//check := get_nb_tasks(arr)
 
-	fmt.Printf("\033[4m@Todo\033[0m ")
-	fmt.Printf("[%d/%d]\n", check, len(arr))
+	//fmt.Printf("\033[4m@Todo\033[0m ")
+	//fmt.Printf("[%d/%d]\n", check, len(arr))
 	for i := 0; i < len(arr); i++ {
 		fmt.Printf("  %s", arr[i].Id)
 		if arr[i].Status == 0 {
