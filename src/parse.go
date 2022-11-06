@@ -95,9 +95,10 @@ func is_alpha(c byte) bool {
 func gest_proj(str []byte) {
     arr := str_to_arr(str)
 
-    fmt.Printf("\033[4mMy projects :\033[0m\n")
+    fmt.Printf("\033[4mMy Boards :\033[0m\n")
     projn := proj_names(arr)
     for y := 0; y < len(projn); y++ {
+        fmt.Printf(" @")
         for x := 0; x < len(projn[y]); x++ {
             if is_alpha(projn[y][x]) {
                 fmt.Printf("%c", projn[y][x])

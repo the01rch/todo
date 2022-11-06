@@ -37,34 +37,48 @@ func is_flag() bool {
 	return false
 }
 
-func is_proj_syntax() bool {
-    str := os.Args[1]
-    if str[0] != '@' {
+func is_proj_syntax(proj []byte) bool {
+    if proj[0] != '@' {
         fmt.Printf("Wrong syntax ! try --help\n") 
         return false
     }
     return true
 }
 
+func strncmp(index int, str1 []byte, str2 []byte) bool {
+    y := 0
+
+    for i := index; i < len(str1); i++ {
+        if str1[i] != str2[y] {
+            return false
+        }
+        y++
+    }
+    return true
+}
+
+
 func main() {
 	if len(os.Args) == 1 {
-		arr := json_to_array()
-        gest_proj(arr)
-		//fmt.Println(arr)
-		//print_tasks(arr)
+		json_file := get_file()
+        gest_proj(json_file)
 		return
 	} else if len(os.Args) == 2 {
-        //arr := json_to_array()
-        if !is_proj_syntax() {
+        proj := os.Args[1]
+
+        if !is_proj_syntax(proj) {
             os.Exit(1)
         } 
+         
+        //arr := json_to_array()
+		//fmt.Println(arr)
+		//print_tasks(arr)
         return
+    } else if !is_flag() {
+        fmt.Println(help())
+        os.Exit(1)
     }
-	/*
-	   else if !is_flag() {
-	       Println(help())
-	       Exit(1)
-	   }
+    /*
 	   l := List{}
 	   arr := json_to_array()
 	   array2list(arr, &l)
