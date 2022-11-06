@@ -37,7 +37,7 @@ func is_flag() bool {
 	return false
 }
 
-func is_proj_syntax(proj []byte) bool {
+func is_proj_syntax(proj string) bool {
     if proj[0] != '@' {
         fmt.Printf("Wrong syntax ! try --help\n") 
         return false
@@ -45,18 +45,19 @@ func is_proj_syntax(proj []byte) bool {
     return true
 }
 
-func strncmp(index int, str1 []byte, str2 []byte) bool {
-    y := 0
+func strncmp(index int, str1 string, str2 []byte) bool {
+    y := index
 
-    for i := index; i < len(str1); i++ {
-        if str1[i] != str2[y] {
-            return false
+    for i := 0; i < len(str2); i++ {
+        if is_alpha(str2[i]) {
+            if str1[y] != str2[i] {
+                return false
+            }
+            y++
         }
-        y++
     }
     return true
 }
-
 
 func main() {
 	if len(os.Args) == 1 {
@@ -64,12 +65,19 @@ func main() {
         gest_proj(json_file)
 		return
 	} else if len(os.Args) == 2 {
-        proj := os.Args[1]
-
-        if !is_proj_syntax(proj) {
+        proja := os.Args[1]
+        if !is_proj_syntax(proja) {
             os.Exit(1)
         } 
-         
+		json_file := get_file()
+        arr := str_to_arr(json_file) 
+        projn := proj_names(arr)
+        for y := 0; y < len(projn); y++ {
+            if strncmp(1, proja, projn[y]) == true {
+               fmt.Printf("Project exist !\n") 
+               break
+            }
+        }
         //arr := json_to_array()
 		//fmt.Println(arr)
 		//print_tasks(arr)
