@@ -33,14 +33,14 @@ func get_file() []byte {
     return data
 }
 
-func json_to_array(data []byte) []byte {
-	var arr []byte
+func json_to_array(jsfile []byte) []data {
+	var arr []data
 
-	err2 := json.Unmarshal(data, &arr)
+	err2 := json.Unmarshal(jsfile, &arr)
 	if err2 != nil {
 		fmt.Println(err2)
 	}
-    return data
+    return arr
 }
 
 /*

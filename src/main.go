@@ -45,26 +45,13 @@ func is_proj_syntax(proj string) bool {
     return true
 }
 
-func strncmp(index int, str1 string, str2 []byte) bool {
-    y := index
-
-    for i := 0; i < len(str2); i++ {
-        if is_alpha(str2[i]) {
-            if str1[y] != str2[i] {
-                return false
-            }
-            y++
-        }
-    }
-    return true
-}
-
 func main() {
 	if len(os.Args) == 1 {
 		json_file := get_file()
         gest_proj(json_file)
 		return
 	} else if len(os.Args) == 2 {
+        //exist := false
         proja := os.Args[1]
         if !is_proj_syntax(proja) {
             os.Exit(1)
@@ -72,10 +59,11 @@ func main() {
 		json_file := get_file()
         arr := str_to_arr(json_file) 
         projn := proj_names(arr)
+        projA := proja[1:]
         for y := 0; y < len(projn); y++ {
-            if strncmp(1, proja, projn[y]) == true {
-               fmt.Printf("Project exist !\n") 
-               break
+            if strstr(projA, string(projn[y])) == true {
+                fmt.Println("yeaaa the project name exist !")
+                break
             }
         }
         //arr := json_to_array()
