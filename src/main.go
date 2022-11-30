@@ -45,31 +45,50 @@ func is_proj_syntax(proj string) bool {
     return true
 }
 
+func is_proj_name(projn [][]byte, projA string) bool {
+    exist := false 
+    for y := 0; y < len(projn); y++ {
+        if strstr(projA, string(projn[y])) == true {
+            exist = true
+            return true
+        }
+    }
+    if !exist {
+        fmt.Printf("comment sa mon boeuf ?\n")
+    }
+    return false
+}
+
+func board_proj() {
+    proja := os.Args[1]
+    if !is_proj_syntax(proja) {
+        os.Exit(1)
+    } 
+    json_file := get_file()
+    arr := str_to_arr(json_file) 
+    projn := proj_names(arr)
+    projA := proja[1:]
+    if !is_proj_name(projn, projA) {
+        os.Exit(1)
+    }
+    infos := infos_proj(arr)
+    for i := 1; i < len(infos); i++ {
+        if strstr(projA, string(arr[infos[i]])) {
+            fmt.Printf("index : %d, str : %s\n", infos[i], string(arr[infos[i]]))
+        }
+    }
+    //arr := json_to_array()
+    //fmt.Println(arr)
+    //print_tasks(arr)
+}
+
 func main() {
 	if len(os.Args) == 1 {
 		json_file := get_file()
         gest_proj(json_file)
 		return
 	} else if len(os.Args) == 2 {
-        //exist := false
-        proja := os.Args[1]
-        if !is_proj_syntax(proja) {
-            os.Exit(1)
-        } 
-		json_file := get_file()
-        arr := str_to_arr(json_file) 
-        projn := proj_names(arr)
-        projA := proja[1:]
-        for y := 0; y < len(projn); y++ {
-            if strstr(projA, string(projn[y])) == true {
-                fmt.Println("yeaaa the project name exist !")
-                break
-            }
-        }
-        //arr := json_to_array()
-		//fmt.Println(arr)
-		//print_tasks(arr)
-        return
+        board_proj()
     } else if !is_flag() {
         fmt.Println(help())
         os.Exit(1)
