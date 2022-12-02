@@ -59,23 +59,40 @@ func is_proj_name(projn [][]byte, projA string) bool {
     return false
 }
 
+func index_end_proj(arr [][]byte, begin int) int {
+    for y := begin; y < len(arr); y++ {
+        for x := 0; x < len(arr[y]); x++ {
+            if arr[y][x] == ']' {
+                return y
+            }
+        }
+    }
+    return 0
+}
+
 func board_proj() {
-    proja := os.Args[1]
-    if !is_proj_syntax(proja) {
-        os.Exit(1)
-    } 
     json_file := get_file()
     arr := str_to_arr(json_file) 
     projn := proj_names(arr)
-    projA := proja[1:]
+    projA := os.Args[1]
+    if !is_proj_syntax(projA) {
+        os.Exit(1)
+    } 
+    projA = projA[1:]
     if !is_proj_name(projn, projA) {
         os.Exit(1)
     }
     infos := infos_proj(arr)
+    begin := 0
+    end := 0
     for i := 1; i < len(infos); i++ {
         if strstr(projA, string(arr[infos[i]])) {
-            fmt.Printf("index : %d, str : %s\n", infos[i], string(arr[infos[i]]))
+            begin = infos[i] + 1
         }
+    }
+    end = index_end_proj(arr, begin)
+    for i := begin; i < end; i++ {
+       fmt.Printf("%s\n", arr[i]); 
     }
     //arr := json_to_array()
     //fmt.Println(arr)
