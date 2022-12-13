@@ -92,6 +92,25 @@ func size_proj_select(begin int, end int, arr [][]byte) int {
     return size
 }
 
+func select_proj(size int, arr [][]byte, begin int, end int) []byte {
+    diff := end - begin
+    p := make([]byte, size + diff + 3)
+    w := 2
+
+    p[0] = '['
+    p[1] = '\n'
+    for y := begin; y < end; y++ {
+        for x := 0; x < len(arr[y]); x++ {
+            p[w] = arr[y][x]
+            w++
+        }
+        p[w] = '\n'
+        w++
+    }
+    p[w] = ']'
+    return p
+}
+
 func board_proj() {
     json_file := get_file()
     arr := str_to_arr(json_file) 
@@ -107,10 +126,10 @@ func board_proj() {
     begin := index_begin_proj(arr, projA)
     end := index_end_proj(arr, begin)
     size := size_proj_select(begin, end, arr)
-    fmt.Printf("size = %d\n", size)
-    //arr := json_to_array()
-    //fmt.Println(arr)
-    //print_tasks(arr)
+    p := select_proj(size, arr, begin, end)
+    //fmt.Printf("%s", p)
+    tab := json_to_array(p)
+    print_tasks(tab)
 }
 
 func main() {

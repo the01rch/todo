@@ -1,7 +1,0 @@
-= TODO =
-
-- [ ] array of byte that contain all project tasks
-    [ ] func that calc the nb of byte necessary to create the array
-    [ ] create the array and concatenate all of arr[i]
-    [ ] json_to_array & steps to flags execution
-    [ ] think about a solution to concatenate the new array with previous arr 
