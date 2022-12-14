@@ -111,11 +111,16 @@ func select_proj(size int, arr [][]byte, begin int, end int) []byte {
     return p
 }
 
-func board_proj() {
+func board_proj() []byte {
     json_file := get_file()
     arr := str_to_arr(json_file) 
     projn := proj_names(arr)
-    projA := os.Args[1]
+    projA := ""
+    if len(os.Args) == 2 {
+        projA = os.Args[1]
+    } else {
+        projA = os.Args[(len(os.Args)-1)]
+    }
     if !is_proj_syntax(projA) {
         os.Exit(1)
     } 
@@ -127,9 +132,7 @@ func board_proj() {
     end := index_end_proj(arr, begin)
     size := size_proj_select(begin, end, arr)
     p := select_proj(size, arr, begin, end)
-    //fmt.Printf("%s", p)
-    tab := json_to_array(p)
-    print_tasks(tab)
+    return p
 }
 
 func main() {
@@ -138,11 +141,18 @@ func main() {
         gest_proj(json_file)
 		return
 	} else if len(os.Args) == 2 {
-        board_proj()
+        p := board_proj()
+        tab := json_to_array(p)
+        print_tasks(tab)
+    } else if len(os.Args) >= 4 {
+        p := board_proj() 
+        tab := json_to_array(p)
+        t := status_flag(tab)
+        print_tasks(t)
     } else if !is_flag() {
         fmt.Println(help())
         os.Exit(1)
-    }
+    } 
     /*
 	   l := List{}
 	   arr := json_to_array()
