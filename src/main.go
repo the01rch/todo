@@ -147,7 +147,9 @@ func main() {
     } else if len(os.Args) >= 4 {
         p := board_proj() 
         tab := json_to_array(p)
-        t := status_flag(tab)
+        l := List{}
+        array2list(tab, &l)
+        t := flag(tab, &l)
         print_tasks(t)
     } else if !is_flag() {
         fmt.Println(help())
