@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	// "io/ioutil")
+    "fmt"
+    "os"
 )
 
 const (
@@ -54,7 +53,7 @@ func is_proj_name(projn [][]byte, projA string) bool {
         }
     }
     if !exist {
-        fmt.Printf("comment sa mon boeuf ?\n")
+        fmt.Printf("the project doesn't exist !\n")
     }
     return false
 }
@@ -111,7 +110,7 @@ func select_proj(size int, arr [][]byte, begin int, end int) []byte {
     return p
 }
 
-func board_proj() []byte {
+func board_proj() (int, int, []byte, [][]byte) {
     json_file := get_file()
     arr := str_to_arr(json_file) 
     projn := proj_names(arr)
@@ -132,8 +131,26 @@ func board_proj() []byte {
     end := index_end_proj(arr, begin)
     size := size_proj_select(begin, end, arr)
     p := select_proj(size, arr, begin, end)
-    return p
+    return begin, end, p, arr
 }
+
+func conc_arr(arr [][]byte, p []byte, begin int, end int) []byte {
+    t1 := len(arr[0:begin])
+    t2 := len(p)
+    t3 := len(arr[end:len(arr)])
+    taille := t1+t2+t3
+    res := make([]byte, taille)
+
+    fmt.Printf("t1 = %d\nt2 = %d\nt3 =%d\n", t1, t2, t3);
+    for y, c := 0, 0; y < len(arr); y++ {
+        for x := 0; x < len(arr[y]); x++ {
+            res[c] = arr[y][x]
+            c++
+        } 
+    }
+    return res
+}
+// TODO : create a func that do the reverse of str2arr so arr2str
 
 func main() {
 	if len(os.Args) == 1 {
@@ -141,26 +158,25 @@ func main() {
         gest_proj(json_file)
 		return
 	} else if len(os.Args) == 2 {
-        p := board_proj()
+        _, _, p, _ := board_proj()
         tab := json_to_array(p)
         print_tasks(tab)
     } else if len(os.Args) >= 4 {
-        p := board_proj() 
-        tab := json_to_array(p)
-        l := List{}
-        array2list(tab, &l)
-        t := flag(tab, &l)
-        print_tasks(t)
+        b, e, p, a := board_proj() 
+        fmt.Printf("%s\n", conc_arr(a, p, b, e))
+        //fmt.Println(string(p)) 
+    //    l := List{}
+     //   array2list(tab, &l)
+        //t := flag(tab, &l)
+       // test := list2array(&l)
+        //fmt.Printf("%s\n", test);
+        //print_tasks(t)
     } else if !is_flag() {
         fmt.Println(help())
         os.Exit(1)
     } 
     /*
-	   l := List{}
-	   arr := json_to_array()
-	   array2list(arr, &l)
-	   tab := flag(arr, &l)
-	   test, _ := MarshalIndent(tab, "", " ")
-	   ioutil.WriteFile("./data/list.json", []byte(test), 0777)
-	*/
+    test, _ := MarshalIndent(tab, "", " ")
+    ioutil.WriteFile("./data/list.json", []byte(test), 0777)
+    */
 }
