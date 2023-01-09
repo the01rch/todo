@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "os"
+    "encoding/json"
 )
 
 const (
@@ -134,24 +135,6 @@ func board_proj() (int, int, []byte, [][]byte) {
     return begin, end, p, arr
 }
 
-func conc_arr(arr [][]byte, p []byte, begin int, end int) []byte {
-    t1 := len(arr[0:begin])
-    t2 := len(p)
-    t3 := len(arr[end:len(arr)])
-    taille := t1+t2+t3
-    res := make([]byte, taille)
-
-    fmt.Printf("t1 = %d\nt2 = %d\nt3 =%d\n", t1, t2, t3);
-    for y, c := 0, 0; y < len(arr); y++ {
-        for x := 0; x < len(arr[y]); x++ {
-            res[c] = arr[y][x]
-            c++
-        } 
-    }
-    return res
-}
-// TODO : create a func that do the reverse of str2arr so arr2str
-
 func main() {
 	if len(os.Args) == 1 {
 		json_file := get_file()
@@ -163,20 +146,16 @@ func main() {
         print_tasks(tab)
     } else if len(os.Args) >= 4 {
         b, e, p, a := board_proj() 
-        fmt.Printf("%s\n", conc_arr(a, p, b, e))
-        //fmt.Println(string(p)) 
-    //    l := List{}
-     //   array2list(tab, &l)
-        //t := flag(tab, &l)
-       // test := list2array(&l)
-        //fmt.Printf("%s\n", test);
-        //print_tasks(t)
+        tab := json_to_array(p)
+        l := List{}
+        array2list(tab, &l)
+        t := flag(tab, &l)
+        test, _ := json.MarshalIndent(t, "", " ")
+        c := strconc(arr2str(a,0,b), test[1:len(test)-1])
+        c = strconc(c, arr2str(a,e,len(a)))
+        os.WriteFile("./data/list.json", c, 0777)
     } else if !is_flag() {
         fmt.Println(help())
         os.Exit(1)
     } 
-    /*
-    test, _ := MarshalIndent(tab, "", " ")
-    ioutil.WriteFile("./data/list.json", []byte(test), 0777)
-    */
 }
