@@ -58,8 +58,32 @@ func del_flag(l *List) {
     l.len = l.len - (check + 1)
 }
 
+func edit_proj_name() {
+    _, _, _, a := board_proj()
+    projn := ""
+    projn = os.Args[3]
+    projn = projn[1:]
+    s := strconc([]byte("\""), []byte(os.Args[2]))
+    for y := 0; y < len(a); y++ {
+        if strstr(projn, string(a[y])) {
+            s = strconc(s, []byte("\""))
+            s = strconc(s, []byte(": ["))
+            a[y] = []byte(s)
+            break
+        }
+    }
+    os.WriteFile("./data/list.json", arr2str(a,0,len(a)), 0777)
+}
+
 func status_flag(arr []data) []data {
     taille := len(os.Args)
+    if os.Args[1] == "-e" {
+        _, err := strconv.Atoi(os.Args[2])
+        if err != nil {
+            edit_proj_name()
+        }
+        os.Exit(0)
+    }
     for i := 0; i < len(arr); i++ {
         for y := 2; y < taille; y++ {
             if os.Args[y] == arr[i].Id {
