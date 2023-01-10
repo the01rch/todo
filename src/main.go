@@ -144,6 +144,13 @@ func main() {
         _, _, p, _ := board_proj()
         tab := json_to_array(p)
         print_tasks(tab)
+    } else if len(os.Args) == 3 {
+        /*
+        name := ""
+        if is_proj_syntax(os.Args[3]) {
+           name = os.Args[3] 
+        }
+        */
     } else if len(os.Args) >= 4 {
         b, e, p, a := board_proj() 
         tab := json_to_array(p)

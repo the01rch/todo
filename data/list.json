@@ -1,5 +1,5 @@
 {    
-    "todo": [
+"todo": [
 
  {
   "Id": "0",
@@ -22,26 +22,27 @@
   "Name": "task family"
  }
     ],
-    "pomo": [
-        {
-            "Id": "0",
-            "Status": 2,
-            "Name": "server client"
-        },
-        {
-            "Id": "1",
-            "Status": 2,
-            "Name": "signals"
-        },
-        {            
-            "Id": "2",
-            "Status": 0,
-            "Name": "auto PID"
-        },
-        {            
-            "Id": "3",
-            "Status": 0,
-            "Name": "FIX time"
-        }
+"pomo": [
+
+ {
+  "Id": "0",
+  "Status": 2,
+  "Name": "server client"
+ },
+ {
+  "Id": "1",
+  "Status": 1,
+  "Name": "signals"
+ },
+ {
+  "Id": "2",
+  "Status": 1,
+  "Name": "auto PID"
+ },
+ {
+  "Id": "3",
+  "Status": 0,
+  "Name": "FIX time"
+ }
     ]
 }
