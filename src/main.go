@@ -145,12 +145,23 @@ func main() {
         tab := json_to_array(p)
         print_tasks(tab)
     } else if len(os.Args) == 3 {
-        /*
-        name := ""
-        if is_proj_syntax(os.Args[3]) {
-           name = os.Args[3] 
+        switch (os.Args[1]) {
+            case "-a" :
+                json_file := get_file()
+                a := str_to_arr(json_file) 
+                projname := os.Args[2]
+                projname = projname[1:]
+                nproj := strconc([]byte("{\n\""), []byte(projname))
+                nproj = strconc(nproj, []byte("\""))
+                nproj = strconc(nproj, []byte(": [\n"))
+                nproj = strconc(nproj, []byte("{\n\"Id\": \"0\",\n\"Status\": 0,\n\"Name\": \"test\"\n}\n],\n"))
+                nproj = strconc(nproj, arr2str(a,1,len(a)))
+                os.WriteFile("./data/list.json", nproj, 0777)
+            case "-d" :
+                b, e, _, a := board_proj()
+                c := strconc(arr2str(a,0,b), arr2str(a,e,len(a)))
+                fmt.Printf("%s\n", string(c))
         }
-        */
     } else if len(os.Args) >= 4 {
         b, e, p, a := board_proj() 
         tab := json_to_array(p)
