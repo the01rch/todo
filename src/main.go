@@ -151,16 +151,29 @@ func main() {
                 a := str_to_arr(json_file) 
                 projname := os.Args[2]
                 projname = projname[1:]
+                task := "{\n\"Id\": \"0\",\n\"Status\": 0,\n\"Name\": \"task\"\n}\n],\n"
                 nproj := strconc([]byte("{\n\""), []byte(projname))
                 nproj = strconc(nproj, []byte("\""))
                 nproj = strconc(nproj, []byte(": [\n"))
-                nproj = strconc(nproj, []byte("{\n\"Id\": \"0\",\n\"Status\": 0,\n\"Name\": \"test\"\n}\n],\n"))
+                nproj = strconc(nproj, []byte(task))
                 nproj = strconc(nproj, arr2str(a,1,len(a)))
                 os.WriteFile("./data/list.json", nproj, 0777)
             case "-d" :
                 b, e, _, a := board_proj()
+                projn := os.Args[2]
+                projn = projn[1:]
                 c := strconc(arr2str(a,0,b), arr2str(a,e,len(a)))
-                fmt.Printf("%s\n", string(c))
+                arr := str_to_arr(c)
+                for i := 0; i < len(arr); i++ {
+                    if strstr(projn, string(arr[i])) {
+                        arr[i] = []byte(" ")
+                        arr[i+1] = []byte(" ")
+                        break;
+                    }
+                }
+                c = arr2str(arr,0,len(arr))
+                os.WriteFile("./data/list.json", c, 0777)
+
         }
     } else if len(os.Args) >= 4 {
         b, e, p, a := board_proj() 
