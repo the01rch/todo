@@ -26,7 +26,8 @@ type List struct {
 }
 
 func get_file() []byte {
-	data, err := os.ReadFile("./data/list.json")
+    home := os.Getenv("HOME")
+	data, err := os.ReadFile(home + "/todo.json")
 	if err != nil {
 		fmt.Println(err)
 	}
