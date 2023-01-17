@@ -77,12 +77,10 @@ func edit_proj_name() {
 
 func status_flag(arr []data) []data {
     taille := len(os.Args)
-    if os.Args[1] == "-e" {
-        _, err := strconv.Atoi(os.Args[2])
-        if err != nil {
+    _, err := strconv.Atoi(os.Args[2])
+    if os.Args[1] == "-e" && err != nil {
             edit_proj_name()
-        }
-        os.Exit(0)
+            os.Exit(0)
     }
     for i := 0; i < len(arr); i++ {
         for y := 2; y < taille; y++ {
