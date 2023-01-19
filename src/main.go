@@ -157,7 +157,7 @@ func main() {
                 nproj = strconc(nproj, []byte(task))
                 nproj = strconc(nproj, arr2str(a,1,len(a)))
                 home := os.Getenv("HOME")
-                os.WriteFile((home + "/todo.json"), nproj, 0777)
+                os.WriteFile((home + "/.todo.json"), nproj, 0777)
             case "-d" :
                 b, e, _, a := board_proj()
                 projn := os.Args[2]
@@ -173,7 +173,7 @@ func main() {
                 }
                 c = arr2str(arr,0,len(arr))
                 home := os.Getenv("HOME")
-                os.WriteFile((home + "/todo.json"), c, 0777)
+                os.WriteFile((home + "/.todo.json"), c, 0777)
 
         }
     } else if len(os.Args) >= 4 {
@@ -186,7 +186,7 @@ func main() {
         c := strconc(arr2str(a,0,b), test[1:len(test)-1])
         c = strconc(c, arr2str(a,e,len(a)))
         home := os.Getenv("HOME")
-        os.WriteFile((home + "/todo.json"), c, 0777)
+        os.WriteFile((home + "/.todo.json"), c, 0777)
     } else if !is_flag() {
         fmt.Println(help())
         os.Exit(1)
