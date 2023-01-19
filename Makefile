@@ -3,7 +3,8 @@ BIN	=	todo
 SRC	=	src/*.go
 
 all:
-	gccgo -o $(BIN) $(SRC)
+	#gccgo -o $(BIN) $(SRC)
+	go build -o $(BIN) $(SRC)
 	@echo "Build binary !"
 	sudo cp todo /bin/
 
