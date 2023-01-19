@@ -7,13 +7,14 @@
 - [Description](#description)
 - [Setup](#setup)
 - [Usage](#usage)
+- [License](#license)
 
 # Description
 
 This project is a fork of [Taskbook](https://github.com/klaudiosinani/taskbook)
 written in Golang, the approach is more minimal only 5 flags (a to e) and no
 additionnal infos like priority, star, notes, date etc. This simple version is
-strait to the point you have a boards of projects and each one contains tasks
+straight to the point you have a boards of projects and each one contains tasks
 with their status, all this data is stored in a json format locally in your
 home directory (~/.todo.json).
 
@@ -28,7 +29,7 @@ home directory (~/.todo.json).
 
 ## Board view
 
-Invoking todo without any option will display a boards of your projects.
+Invoking todo without any options will display a board of your projects.
 
 ```bash
 todo
@@ -44,7 +45,7 @@ todo @project
 
 ## Add a Project
 
-To add a new project your need to use the flag '-a' and the name.
+To add a new project your need to use the flag '-a' and the name in parenthesis.
 
 ```bash
 todo -a "project_1"
@@ -60,8 +61,8 @@ todo -d @project_1
 
 ## Edit a Project name
 
-To edit a project name you need to use the flag '-e', new name and the 
-old name with '@'.
+To edit a project name you need to use the flag '-e', new project name in
+parenthesis and the old project name with '@'.
 
 ```bash
 todo -e "toto" @gogo
@@ -106,9 +107,6 @@ but you need to specify the ID of the task.
 todo -e 0 "test app" @popo
 ```
 
-# Related
+# License
 
-* [pomo](github.com/RyRch/pomo) - pomodoro timer in cli
-* [fetch](github.com/RyRch/fetch) - fetch system infos
-* [top](github.com/RyRch/top) - system monitoring dashboard tui
-
+[MIT](https://github.com/RyRch/todo/blob/main/LICENSE.md)
