@@ -30,39 +30,51 @@ home directory (~/.todo.json).
 
 Invoking todo without any option will display a boards of your projects.
 
-`todo`
+```bash
+todo
+```
 
 ## Project view
 
 To display the tasks of a specific project you need to specify the name with '@'.
 
-`todo @project`
+```bash
+todo @project
+```
 
 ## Add a Project
 
 To add a new project your need to use the flag '-a' and the name.
 
-`todo -a "project_1"`
+```bash
+todo -a "project_1"
+```
 
 ## Delete a Project
 
 To delete a project you need to use the flag '-d' and the name with '@'.
 
-`todo -d @project_1`
+```bash
+todo -d @project_1
+```
 
 ## Edit a Project name
 
 To edit a project name you need to use the flag '-e', new name and the 
 old name with '@'.
 
-`todo -e "toto" @gogo`
+```bash
+todo -e "toto" @gogo
+```
 
 ## Add a Task
 
 To add a task you need to use the flag '-a' with the task name in parenthesis
 and the project name.
 
-`todo -a "send email" @work`
+```bash
+todo -a "send email" @work
+```
 
 ## Change Task status
 
@@ -70,22 +82,33 @@ In order to change the status of a particular task you need to specify the
 action, the ID of the task and the project related. 
 
 1. flag '-b' for begin
-* `todo -b 0 1 @project`
+
+ ```bash
+ todo -b 0 1 @project
+ ```
 2. flag '-c' for check
-* `todo -c 1 2 @project`
+
+ ```bash
+todo -c 1 2 @project
+```
 3. flag '-d' for delete
-* `todo -d 0 1 2 @project`
+
+```bash
+ todo -d 0 1 2 @project
+ ```
 
 ## Edit a Task name
 
 To edit a task name is quite like [Editing a Project name](##Edit a Project name)
 but you need to specify the ID of the task.
 
-`todo -e 0 "test app" @popo`
+```bash
+todo -e 0 "test app" @popo
+```
 
 # Related
 
-* [pomo](github.com/RyRch/pomo)
-* [fetch](github.com/RyRch/fetch)
-* [top](github.com/RyRch/top)
+* [pomo](github.com/RyRch/pomo) - pomodoro timer in cli
+* [fetch](github.com/RyRch/fetch) - fetch system infos
+* [top](github.com/RyRch/top) - system monitoring dashboard tui
 
