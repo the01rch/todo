@@ -150,7 +150,6 @@ func main() {
                 json_file := get_file()
                 a := str_to_arr(json_file) 
                 projname := os.Args[2]
-                projname = projname[1:]
                 task := "{\n\"Id\": \"0\",\n\"Status\": 0,\n\"Name\": \"task\"\n}\n],\n"
                 nproj := strconc([]byte("{\n\""), []byte(projname))
                 nproj = strconc(nproj, []byte("\""))
