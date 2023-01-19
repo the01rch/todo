@@ -14,22 +14,23 @@
 This project is a fork of [Taskbook](https://github.com/klaudiosinani/taskbook)
 written in Golang, the approach is more minimal only 5 flags (a to e) and no
 additionnal infos like priority, star, notes, date etc. This simple version is
-straight to the point you have a boards of projects and each one contains tasks
-with their status, all this data is stored in a json format locally in your
-home directory (~/.todo.json).
+straight to the point you have a board of projects and each one contain tasks
+with their status, all this data is stored locally in a json file in your
+home directory (~/.todo.json)
 
 # Setup
 
-1. Install Golang if you don't have it : [Install Go](https://go.dev/doc/install)
-2. Clone this repo : 
+> [Install](https://go.dev/doc/install) Go if you don't have it.
+
+1. Clone this repo : 
 ```bash 
 git clone github.com/RyRch/todo
 ```
-3. Go to the directory : 
+2. Go to the directory : 
 ```bash 
 cd todo 
 ```
-4. Build and install it with : 
+3. Build and install it with : 
 ```bash
 sudo make install
  ```
