@@ -21,9 +21,18 @@ home directory (~/.todo.json).
 # Setup
 
 1. Install Golang if you don't have it : [Install Go](https://go.dev/doc/install)
-2. Clone this repo : `git clone github.com/RyRch/todo`
-3. Go to the directory : `cd todo`
-4. Build and install it with : `sudo make install`
+2. Clone this repo : 
+```bash 
+git clone github.com/RyRch/todo
+```
+3. Go to the directory : 
+```bash 
+cd todo 
+```
+4. Build and install it with : 
+```bash
+sudo make install
+ ```
 
 # Usage
 
