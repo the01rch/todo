@@ -73,7 +73,7 @@ func edit_proj_name() {
         }
     }
     home := os.Getenv("HOME")
-    os.WriteFile((home + "/todo.json"), arr2str(a,0,len(a)), 0777)
+    os.WriteFile((home + "/.todo.json"), arr2str(a,0,len(a)), 0777)
 }
 
 func status_flag(arr []data) []data {
