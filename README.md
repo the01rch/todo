@@ -2,6 +2,8 @@
 <h4 align="center">Simple todo app in cli for unix users !</h4>
 <div align="center"><img alt="todo" src="data/todo.png"/></div>
 
+---
+
 ## Table of content
 
 - [Description](#description)
@@ -24,7 +26,7 @@ home directory (~/.todo.json)
 
 1. Clone this repo : 
 ```bash 
-git clone github.com/RyRch/todo
+git clone github.com/the01rch/todo
 ```
 2. Go to the directory : 
 ```bash 
@@ -110,8 +112,8 @@ todo -c 1 2 @project
 
 ## Edit a Task name
 
-To edit a task name is quite like [Editing a Project name](##Edit a Project name)
-but you need to specify the ID of the task.
+To edit a task name is quite like editinh a prohect name but you need 
+to specify the ID of the task.
 
 ```bash
 todo -e 0 "test app" @popo
@@ -119,4 +121,4 @@ todo -e 0 "test app" @popo
 
 # License
 
-[MIT](https://github.com/RyRch/todo/blob/main/LICENSE.md)
+[MIT](https://github.com/the01rch/todo/blob/main/LICENSE.md)
