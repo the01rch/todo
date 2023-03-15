@@ -112,8 +112,8 @@ todo -c 1 2 @project
 
 ## Edit a Task name
 
-To edit a task name is quite like editinh a prohect name but you need 
-to specify the ID of the task.
+To edit a task name is quite like editing a project name but you need 
+to specify the ID of the task after the flag 'e'.
 
 ```bash
 todo -e 0 "test app" @popo
