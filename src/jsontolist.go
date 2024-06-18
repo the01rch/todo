@@ -46,7 +46,12 @@ func json_to_array(jsfile []byte) []data {
 
 func print_tasks(arr []data) {
 	for i := 0; i < len(arr); i++ {
-		fmt.Printf("  %s", arr[i].Id)
+		nn, _ := strconv.Atoi(arr[i].Id)
+		if nn < 10 {
+			fmt.Printf("  %s", arr[i].Id)
+		} else if nn > 9 {
+			fmt.Printf(" %s", arr[i].Id)
+		}
 		if arr[i].Status == 0 {
 			fmt.Printf(".   ")
 		} else if arr[i].Status == 1 {
