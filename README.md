@@ -26,7 +26,7 @@ home directory (~/.todo.json)
 
 1. Clone this repo : 
 ```bash 
-git clone github.com/the01rch/todo
+git clone https://github.com/the01rch/todo
 ```
 2. Go to the directory : 
 ```bash 
